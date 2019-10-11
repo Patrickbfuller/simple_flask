@@ -10,8 +10,8 @@
       import json
 
       def display_increment(response):
-          document["result"].html += response.text
-          print('display print statement here')
+          document["result"].html = response.text
+          print('display_increment print statement here')
 
       def send_to_server(ev):
           """Get the predicted probability."""
@@ -23,7 +23,9 @@
           req.open('POST', '/increment_on_server', True)
           req.set_header('content-type','application/json')
 
-          data = json.dumps({'package_to_server': document['package_id'].value})
+          data = json.dumps(
+            {'package_to_server': document['package_id'].value}
+            )
           req.send(data)
 
 
@@ -32,10 +34,10 @@
 
     <textarea id="package_id"></textarea>
     <button id="event_button_id">Action Button</button>
-    <div id="result">Result Here: </div>
+    <div id="result">- Result Here -</div>
     {% for element in var_from_server %}
       {% if element > 2 %}
-        <div>{{element}}</div>
+        <div>Jinja loop {{element}}</div>
       {% endif %}
     {% endfor %}
   </body>

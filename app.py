@@ -1,8 +1,9 @@
 from flask import Flask, request, render_template, jsonify
 
-app = Flask(__name__, static_folder="static")
+app = Flask(__name__, static_folder='static/')
 
 var_on_server = [1,2,3,4,5,6]
+
 
 @app.route('/')
 def index():
